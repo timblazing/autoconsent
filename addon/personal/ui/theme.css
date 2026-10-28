@@ -1,0 +1,317 @@
+/* Dark theme modeled on Vercel's Geist design system. */
+@font-face {
+    font-family: 'Geist';
+    src: url('./fonts/Geist-Variable.woff2') format('woff2');
+    font-weight: 100 900;
+    font-display: block;
+}
+@font-face {
+    font-family: 'Geist Mono';
+    src: url('./fonts/GeistMono-Variable.woff2') format('woff2');
+    font-weight: 100 900;
+    font-display: block;
+}
+
+:root {
+    color-scheme: dark;
+    --bg-100: #0a0a0a;
+    --bg-200: #000;
+    --gray-100: #1a1a1a;
+    --gray-200: #1f1f1f;
+    --gray-300: #292929;
+    --gray-400: #2e2e2e;
+    --gray-500: #454545;
+    --gray-600: #878787;
+    --gray-900: #a1a1a1;
+    --gray-1000: #ededed;
+    --alpha-100: rgba(255, 255, 255, 0.04);
+    --alpha-200: rgba(255, 255, 255, 0.07);
+    --alpha-400: rgba(255, 255, 255, 0.14);
+    --blue: #0a72ef;
+    --blue-hi: #52a8ff;
+    --green: #2fbb5e;
+    --green-bg: rgba(47, 187, 94, 0.12);
+    --amber: #f5a524;
+    --amber-bg: rgba(245, 165, 36, 0.12);
+    --red: #ff6166;
+    --red-bg: rgba(255, 97, 102, 0.12);
+    --blue-bg: rgba(82, 168, 255, 0.12);
+    --radius: 8px;
+    --radius-sm: 6px;
+    --font: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    background: var(--bg-200);
+    color: var(--gray-1000);
+    font-family: var(--font);
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    color: inherit;
+}
+
+button,
+input,
+select {
+    font: inherit;
+    color: inherit;
+}
+
+:focus-visible {
+    outline: 2px solid var(--blue-hi);
+    outline-offset: 2px;
+}
+
+.muted {
+    color: var(--gray-900);
+}
+.subtle {
+    color: var(--gray-600);
+}
+.mono {
+    font-family: var(--mono);
+    font-size: 12px;
+}
+.hidden {
+    display: none !important;
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    height: 32px;
+    padding: 0 12px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--alpha-400);
+    background: var(--bg-100);
+    color: var(--gray-1000);
+    font-weight: 500;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: none;
+    transition:
+        background 0.15s,
+        border-color 0.15s;
+    white-space: nowrap;
+}
+.btn:hover {
+    background: var(--gray-200);
+}
+.btn-primary {
+    background: var(--gray-1000);
+    border-color: var(--gray-1000);
+    color: var(--bg-200);
+}
+.btn-primary:hover {
+    background: #cfcfcf;
+    border-color: #cfcfcf;
+}
+.btn-danger {
+    color: var(--red);
+}
+.btn-danger:hover {
+    background: var(--red-bg);
+    border-color: rgba(255, 97, 102, 0.4);
+}
+.btn-ghost {
+    border-color: transparent;
+    background: transparent;
+    color: var(--gray-900);
+}
+.btn-ghost:hover {
+    background: var(--alpha-200);
+    color: var(--gray-1000);
+}
+.btn-sm {
+    height: 28px;
+    padding: 0 10px;
+    font-size: 12px;
+}
+.icon-btn {
+    width: 32px;
+    padding: 0;
+}
+
+/* Switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 36px;
+    height: 20px;
+    flex: none;
+}
+.switch input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    margin: 0;
+    cursor: pointer;
+    z-index: 1;
+}
+.switch .track {
+    position: absolute;
+    inset: 0;
+    border-radius: 999px;
+    background: var(--gray-400);
+    transition: background 0.15s;
+}
+.switch .track::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--gray-1000);
+    transition: transform 0.15s;
+}
+.switch input:checked + .track {
+    background: var(--blue);
+}
+.switch input:checked + .track::after {
+    transform: translateX(16px);
+}
+.switch input:disabled + .track {
+    opacity: 0.4;
+}
+.switch input:focus-visible + .track {
+    outline: 2px solid var(--blue-hi);
+    outline-offset: 2px;
+}
+
+/* Segmented control */
+.segmented {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    padding: 3px;
+    gap: 2px;
+    border-radius: var(--radius);
+    background: var(--gray-100);
+    border: 1px solid var(--alpha-400);
+}
+.segmented label {
+    position: relative;
+}
+.segmented input {
+    position: absolute;
+    opacity: 0;
+    inset: 0;
+    margin: 0;
+    cursor: pointer;
+}
+.segmented span {
+    display: block;
+    text-align: center;
+    padding: 5px 8px;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-900);
+    transition:
+        background 0.15s,
+        color 0.15s;
+}
+.segmented label:hover span {
+    color: var(--gray-1000);
+}
+.segmented input:checked + span {
+    background: var(--gray-400);
+    color: var(--gray-1000);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+.segmented input:focus-visible + span {
+    outline: 2px solid var(--blue-hi);
+}
+
+/* Badges */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    height: 22px;
+    padding: 0 8px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 500;
+    background: var(--alpha-200);
+    color: var(--gray-1000);
+    white-space: nowrap;
+}
+.badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+}
+.badge.rejected,
+.badge.ok {
+    background: var(--green-bg);
+    color: var(--green);
+}
+.badge.acknowledged,
+.badge.info {
+    background: var(--blue-bg);
+    color: var(--blue-hi);
+}
+.badge.accepted,
+.badge.hidden-o,
+.badge.waiting,
+.badge.warn {
+    background: var(--amber-bg);
+    color: var(--amber);
+}
+.badge.failed,
+.badge.bad {
+    background: var(--red-bg);
+    color: var(--red);
+}
+
+/* Inputs */
+.input {
+    height: 32px;
+    padding: 0 10px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--alpha-400);
+    background: var(--bg-100);
+    width: 100%;
+    transition: border-color 0.15s;
+}
+.input:hover {
+    border-color: var(--gray-500);
+}
+.input:focus {
+    outline: none;
+    border-color: var(--gray-600);
+    box-shadow: 0 0 0 3px var(--alpha-200);
+}
+.input::placeholder {
+    color: var(--gray-600);
+}
+
+.kbd-logo {
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    display: grid;
+    place-items: center;
+    background: var(--gray-1000);
+    color: var(--bg-200);
+    flex: none;
+}

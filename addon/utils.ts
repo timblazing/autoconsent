@@ -17,17 +17,17 @@ export function extensionDefaultConfig(storedConfig: Partial<Config> = {}): Conf
     }
     if (!storedConfig.logs) {
         storedConfig.logs = {
-            lifecycle: true,
-            rulesteps: true,
+            lifecycle: false,
+            rulesteps: false,
             detectionsteps: false,
-            evals: true,
+            evals: false,
             errors: true,
             messages: false,
-            waits: true,
+            waits: false,
         };
     }
     if (storedConfig.performanceLoggingEnabled === undefined) {
-        storedConfig.performanceLoggingEnabled = true;
+        storedConfig.performanceLoggingEnabled = false;
     }
     return normalizeConfig(storedConfig);
 }
