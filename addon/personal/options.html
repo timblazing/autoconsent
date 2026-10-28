@@ -3,7 +3,8 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Autoconsent settings</title>
+        <title>AutoConsent settings</title>
+        <link rel="icon" href="brand/icon-32.png" />
         <link rel="stylesheet" href="ui/theme.css" />
         <style>
             .topbar {
@@ -59,7 +60,25 @@
             nav a[aria-current='page'] {
                 color: var(--gray-1000);
                 background: var(--alpha-200);
+                box-shadow: inset 2px 0 0 var(--teal);
                 font-weight: 500;
+            }
+            .chart-empty {
+                position: absolute;
+                inset: 0;
+                display: grid;
+                place-items: center;
+                color: var(--gray-600);
+                font-size: 13px;
+            }
+            .beta {
+                font-size: 11px;
+                height: 20px;
+                background: var(--teal-bg);
+                color: var(--teal);
+            }
+            .beta::before {
+                display: none;
             }
             .view {
                 display: none;
@@ -204,12 +223,12 @@
             .chart .bar {
                 width: 100%;
                 min-height: 0;
-                background: var(--blue);
+                background: var(--teal);
                 border-radius: 4px 4px 0 0;
                 transition: background 0.1s;
             }
             .chart .col:hover .bar {
-                background: var(--blue-hi);
+                background: var(--teal-hi);
             }
             .chart .col:hover {
                 background: var(--alpha-100);
@@ -295,7 +314,7 @@
                 color: var(--gray-900);
             }
             .verified {
-                color: var(--green);
+                color: var(--teal);
             }
             .toolbar {
                 display: flex;
@@ -341,7 +360,7 @@
                 cursor: pointer;
             }
             input[type='checkbox'].cb {
-                accent-color: var(--blue);
+                accent-color: var(--teal);
                 width: 15px;
                 height: 15px;
             }
@@ -370,23 +389,11 @@
     </head>
     <body>
         <div class="topbar">
-            <div class="kbd-logo" aria-hidden="true">
-                <svg
-                    width="13"
-                    height="13"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                >
-                    <path d="M20 6 9 17l-5-5" />
-                </svg>
-            </div>
-            <span class="name">Autoconsent</span>
+            <img class="logo" src="brand/logo.svg" alt="" />
+            <span class="name">AutoConsent</span>
             <span class="sep">/</span>
             <span class="muted">Settings</span>
+            <span class="badge beta">Beta</span>
             <span style="flex: 1"></span>
             <span class="mono subtle" id="version"></span>
         </div>
@@ -462,7 +469,7 @@
                         <div class="empty hidden" id="activity-empty">
                             No banners handled yet. Browse a site with a cookie banner and it will show up here.
                         </div>
-                        <div class="card-foot">
+                        <div class="card-foot" id="activity-foot">
                             <span id="activity-count"></span>
                             <button class="btn btn-sm hidden" id="activity-more">Show more</button>
                         </div>
@@ -495,7 +502,7 @@
                 <!-- Sites -->
                 <section class="view" id="view-sites">
                     <h2>Paused sites</h2>
-                    <p class="view-desc">Autoconsent does nothing on these domains (including subdomains). Use this for sites it breaks.</p>
+                    <p class="view-desc">AutoConsent does nothing on these domains (including subdomains). Use this for sites it breaks.</p>
                     <div class="card">
                         <div class="card-body">
                             <form class="add-site" id="add-site">

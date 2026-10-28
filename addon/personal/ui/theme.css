@@ -1,4 +1,4 @@
-/* Dark theme modeled on Vercel's Geist design system. */
+/* Dark theme modeled on Vercel's Geist design system, accented with the AutoConsent teal. */
 @font-face {
     font-family: 'Geist';
     src: url('./fonts/Geist-Variable.woff2') format('woff2');
@@ -27,7 +27,10 @@
     --alpha-100: rgba(255, 255, 255, 0.04);
     --alpha-200: rgba(255, 255, 255, 0.07);
     --alpha-400: rgba(255, 255, 255, 0.14);
-    --blue: #0a72ef;
+    --teal: #2dd4bf;
+    --teal-hi: #5eead4;
+    --teal-bg: rgba(45, 212, 191, 0.12);
+    --navy: #0f172a;
     --blue-hi: #52a8ff;
     --green: #2fbb5e;
     --green-bg: rgba(47, 187, 94, 0.12);
@@ -61,6 +64,10 @@ a {
     color: inherit;
 }
 
+::selection {
+    background: rgba(45, 212, 191, 0.3);
+}
+
 button,
 input,
 select {
@@ -69,7 +76,7 @@ select {
 }
 
 :focus-visible {
-    outline: 2px solid var(--blue-hi);
+    outline: 2px solid var(--teal);
     outline-offset: 2px;
 }
 
@@ -112,13 +119,13 @@ select {
     background: var(--gray-200);
 }
 .btn-primary {
-    background: var(--gray-1000);
-    border-color: var(--gray-1000);
-    color: var(--bg-200);
+    background: var(--teal);
+    border-color: var(--teal);
+    color: var(--navy);
 }
 .btn-primary:hover {
-    background: #cfcfcf;
-    border-color: #cfcfcf;
+    background: var(--teal-hi);
+    border-color: var(--teal-hi);
 }
 .btn-danger {
     color: var(--red);
@@ -181,7 +188,10 @@ select {
     transition: transform 0.15s;
 }
 .switch input:checked + .track {
-    background: var(--blue);
+    background: var(--teal);
+}
+.switch input:checked + .track::after {
+    background: var(--navy);
 }
 .switch input:checked + .track::after {
     transform: translateX(16px);
@@ -190,7 +200,7 @@ select {
     opacity: 0.4;
 }
 .switch input:focus-visible + .track {
-    outline: 2px solid var(--blue-hi);
+    outline: 2px solid var(--teal);
     outline-offset: 2px;
 }
 
@@ -232,11 +242,11 @@ select {
 }
 .segmented input:checked + span {
     background: var(--gray-400);
-    color: var(--gray-1000);
+    color: var(--teal-hi);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
 }
 .segmented input:focus-visible + span {
-    outline: 2px solid var(--blue-hi);
+    outline: 2px solid var(--teal);
 }
 
 /* Badges */
@@ -262,8 +272,8 @@ select {
 }
 .badge.rejected,
 .badge.ok {
-    background: var(--green-bg);
-    color: var(--green);
+    background: var(--teal-bg);
+    color: var(--teal);
 }
 .badge.acknowledged,
 .badge.info {
@@ -305,13 +315,9 @@ select {
     color: var(--gray-600);
 }
 
-.kbd-logo {
-    width: 20px;
-    height: 20px;
-    border-radius: 6px;
-    display: grid;
-    place-items: center;
-    background: var(--gray-1000);
-    color: var(--bg-200);
+.logo {
+    width: 22px;
+    height: 22px;
     flex: none;
+    display: block;
 }

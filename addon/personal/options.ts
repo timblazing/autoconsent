@@ -6,6 +6,8 @@ import { parse as tldtsParse } from 'tldts-experimental';
 import { initConfig } from '../utils';
 import { ACTIVITY_KEY, ActivityEntry, clearActivity, cmpLabel, getActivity, OUTCOME_LABEL, outcomeOf } from './activity';
 
+declare const __ENGINE_VERSION__: string;
+
 const DAY = 24 * 60 * 60 * 1000;
 const PAGE_SIZE = 25;
 const MAX_RENDERED_RULES = 100;
@@ -120,7 +122,11 @@ function renderChart() {
     const counts = days.map((d) => activity.filter((e) => e.action !== 'detected' && e.ok && e.ts >= d && e.ts < d + DAY).length);
     const max = niceMax(Math.max(...counts));
     chart.replaceChildren();
+    if (counts.every((c) => c === 0)) {
+        chart.append(el('div', { class: 'chart-empty', textContent: 'No banners handled in the last 30 days' }));
+    }
     [0.5, 1].forEach((f) => {
+        if (counts.every((c) => c === 0)) return;
         const line = el('div', { class: 'gridline' }, [el('span', { textContent: String(Math.round(max * f)) })]);
         line.style.bottom = `${f * 100}%`;
         chart.append(line);
@@ -171,6 +177,7 @@ function renderActivityTable() {
         }),
     );
     $('#activity-empty').classList.toggle('hidden', rows.length > 0);
+    $('#activity-foot').classList.toggle('hidden', rows.length === 0);
     $('#activity-count').textContent = rows.length ? `Showing ${visible.length} of ${rows.length.toLocaleString()}` : '';
     $('#activity-more').classList.toggle('hidden', visible.length >= rows.length);
 }
@@ -453,7 +460,8 @@ function renderAdvanced() {
 async function init() {
     config = await storageGet('config');
     config.disabledCmps = config.disabledCmps || [];
-    $('#version').textContent = `v${chrome.runtime.getManifest().version}`;
+    const manifest = chrome.runtime.getManifest();
+    $('#version').textContent = `v${manifest.version} · engine ${__ENGINE_VERSION__}`;
 
     renderGeneral();
     renderAdvanced();
