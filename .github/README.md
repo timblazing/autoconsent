@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/timblazing/autoconsent/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/timblazing/autoconsent?include_prereleases&label=release&color=2dd4bf&labelColor=0f172a" /></a>
+  <a href="https://github.com/timblazing/autoconsent/releases"><img alt="Latest release" src="https://img.shields.io/github/v/release/timblazing/autoconsent?include_prereleases&label=release&color=2dd4bf&labelColor=0f172a" /></a>
   <img alt="Status: beta" src="https://img.shields.io/badge/status-beta-2dd4bf?labelColor=0f172a" />
   <a href="../LICENSE"><img alt="License: MPL-2.0" src="https://img.shields.io/badge/license-MPL--2.0-2dd4bf?labelColor=0f172a" /></a>
 </p>
@@ -41,7 +41,7 @@ Most “accept all cookies” extensions click **Accept**. AutoConsent does the 
 
 ## Install
 
-1. Download `autoconsent-v*.zip` from the [latest release](https://github.com/timblazing/autoconsent/releases/latest) and unzip it somewhere permanent. The browser loads it from that folder, so don’t delete it.
+1. Download `autoconsent-v*.zip` from the [releases page](https://github.com/timblazing/autoconsent/releases) and unzip it somewhere permanent. The browser loads it from that folder, so don’t delete it.
 2. Open `chrome://extensions` (or `helium://extensions`, `brave://extensions`, `edge://extensions`).
 3. Turn on **Developer mode**.
 4. Click **Load unpacked** and pick the unzipped folder.
